@@ -70,6 +70,7 @@
     
     .second-hand {
       height: 3px;
+      background: red;
     }
 
     .hour-hand {
@@ -80,8 +81,8 @@
     }
 
     .min-hand {
-      width: 40%;
-      left: 10%;
+      width: 45%;
+      left: 5%;
     }
 
   </style>
@@ -99,10 +100,12 @@
     const secondDegree = ((second / 60) * 360) + 90;
     const minDegree = ((minute / 60) * 360) + 90;
     const hourDegree = ((hour / 24) * 360);
-    if (secondDegree == 90) {
-      secondHand.style.transition = 'none';
-      secondHand.style.transition = 'all 0.05s';
-      secondHand.style.transitionTimingFunction = 'cubic-bezier(0.1, 2.7, 0.58, 1)';
+    if(secondDegree <= 90) {
+    	secondHand.style.transition = 'unset';
+    	setTimeout(() => {
+		    secondHand.style.transition = 'all 0.05s';
+		    secondHand.style.transitionTimingFunction = 'cubic-bezier(0.1, 2.7, 0.58, 1)';
+    	}, 1000)
     }
     secondHand.style.transform = `rotate(${secondDegree}deg)`;
     minuteHand.style.transform = `rotate(${minDegree}deg)`;
